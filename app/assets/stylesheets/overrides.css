@@ -1,0 +1,69 @@
+
+body { 
+     padding-top: 60px; 
+     font-size: 12px;
+} 
+
+footer, #footer {
+     margin-top: 17px;
+     padding-top: 17px;
+     border-top: 1px solid #eee;
+     background-color:#E6E6E6;
+     text-align: center;
+}
+
+.well {
+     line-height: 1.5;
+}
+
+.well li {
+     font-size: 170%;
+     line-height: 1.5;
+}
+
+li.searchnav {
+     padding-top: 10px;
+     padding-bottom: 0px;
+     margin-bottom: 0px;
+     height: 40px;
+}
+
+.centered {
+     margin-left: auto;
+     margin-right: auto;
+     padding-right: auto;
+     padding-left: auto;
+}
+
+.well .centered img {
+     padding-left: 15px;
+}
+
+
+.icon-list {
+  background-image: url("./img/glyphicons-halflings.png");
+}
+.icon-edit {
+  background-image: url("./img/glyphicons-halflings.png");
+}
+.icon-pencil {
+  background-image: url("./img/glyphicons-halflings.png");
+}
+.icon-ban-circle {
+  background-image: url("./img/glyphicons-halflings.png");
+}
+.icon-plus {
+  background-image: url("./img/glyphicons-halflings.png");
+}
+.icon-trash {
+  background-image: url("./img/glyphicons-halflings.png");
+}
+.icon-search {
+  background-image: url("./img/glyphicons-halflings.png");
+}
+.icon-circle-arrow-left {
+  background-image: url("./img/glyphicons-halflings.png");
+}
+.icon-white {
+  background-image: url("./img/glyphicons-halflings-white.png");
+}

@@ -2,7 +2,7 @@ class CompetitorsController < ApplicationController
   # GET /competitors
   # GET /competitors.json
   def index
-    @competitors = Competitor.all
+    @competitors = Competitor.by_elo
 
     respond_to do |format|
       format.html # index.html.erb

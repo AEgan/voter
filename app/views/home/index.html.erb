@@ -1,15 +1,14 @@
-<h1>Vote here</h1>
-<table>
-	<tr>
-		<td><%= @competitor1.name %></td>
-		<td><%= @competitor2.name %></td>
-	</tr>
-	<tr>
-		<td><%= @competitor1.description %></td>
-		<td><%= @competitor2.description %></td>
-	</tr>
-	<tr>
-		<td><%= link_to "Vote #{@competitor1.name}", vote_path(:winner_id => @competitor1.id, :loser_id => @competitor2.id) %></td>
-		<td><%= link_to "Vote #{@competitor2.name}", vote_path(:winner_id => @competitor2.id, :loser_id => @competitor1.id) %></td>
-	</tr>
-</table>
+
+<h1 class="centered">Teacher Death Match</h1>
+<div class="row">
+	<div class="span6">
+		<h4><%= @competitor1.name %></h4>
+		<p><%= @competitor1.description %></p>
+		<%= link_to raw("<i class='icon-ok icon-white'></i> Vote #{@competitor1.name}"), vote_path(:winner_id => @competitor1.id, :loser_id => @competitor2.id), :class=>'btn btn-success' %>
+	</div>
+	<div class="span6">
+		<h4><%= @competitor2.name %></h4>
+		<p><%= @competitor2.description %></p>
+		<%= link_to raw("<i class='icon-ok icon-white'></i> Vote #{@competitor2.name}"), vote_path(:winner_id => @competitor2.id, :loser_id => @competitor1.id), :class=>'btn btn-success' %>
+	</div>
+</div>

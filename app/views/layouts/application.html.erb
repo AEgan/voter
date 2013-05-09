@@ -8,7 +8,26 @@
 </head>
 <body>
 
-<%= yield %>
+  <div class="wrapper">
+    <div class="container">
+  
+
+
+      <div class="navbar navbar-inverse">
+        <div class="navbar-inner navbar-fixed-top ">
+          <div class="container">
+            <%= link_to 'Teacher Death Match', home_path, :class => 'brand' %>
+            <%= render :partial => "navigation" %>
+          </div>
+        </div>
+      </div>
+    	
+      <div class="main content">
+
+				<%= yield %>
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>

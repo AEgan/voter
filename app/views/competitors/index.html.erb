@@ -1,31 +1,31 @@
-<h1>Listing competitors</h1>
-
-<table>
-  <tr>
+<div class="row">
+<div class="span12">
+    <h1>Leaderboards</h1>
+<table class='table table-striped table-bordered table-hover '>
+  <thead>
+    <th>Place</th>
     <th>Name</th>
-    <th>Description</th>
+    <th>Elo</th>
     <th>Wins</th>
     <th>Times played</th>
-    <th>Elo</th>
     <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+  </thead>
+<% i = 1 %>
 <% @competitors.each do |competitor| %>
   <tr>
-    <td><%= competitor.name %></td>
-    <td><%= competitor.description %></td>
+    <td><%= i %></td>
+    <td><%= link_to competitor.name, competitor %></td>
+    <td><%= competitor.elo.round(2) %></td>
     <td><%= competitor.wins %></td>
     <td><%= competitor.times_played %></td>
-    <td><%= competitor.elo %></td>
-    <td><%= link_to 'Show', competitor %></td>
-    <td><%= link_to 'Edit', edit_competitor_path(competitor) %></td>
-    <td><%= link_to 'Destroy', competitor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to raw("<i class='icon-edit'></i> Edit"), edit_competitor_path(competitor), :class => 'btn' %></td>
   </tr>
+  <% i = i + 1 %>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Competitor', new_competitor_path %>
+<%= link_to raw("<i class='icon-plus icon-white'></i> New Competitor"), new_competitor_path, :class => 'btn btn-primary'%>
+</div>
+</div>
