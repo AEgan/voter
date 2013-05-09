@@ -23,7 +23,7 @@ class Competitor < ActiveRecord::Base
 
   # the odds of winning according to Elo's mind
   def exp_rate(otherElo)
-  	1.0/(1+10**((otherElo - self.elo)/400.0)
+  	1.0/(1+10**((otherElo - self.elo)/400.0))
   end
 
   # for now the K value (as it was described to me) will be set to 20. 
