@@ -1,33 +1,44 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="span4">
+    <% if !@competitor.photo_url.nil? %>
+      <p><%= image_tag @competitor.photo_url %></p>
+    <% else %>
+      <p>Image unavailable</p>
+    <% end %>
+  </div>
+  <div class="span8">
+    <h2>About <%= @competitor.name %></h2>
+    <p>
+      <b>Name:</b>
+      <%= @competitor.name %>
+    </p>
 
-<p>
-  <b>Name:</b>
-  <%= @competitor.name %>
-</p>
+    <p>
+      <b>Wins:</b>
+      <%= @competitor.wins %>
+    </p>
 
-<p>
-  <b>Description:</b>
-  <%= @competitor.description %>
-</p>
+    <p>
+      <b>Times played:</b>
+      <%= @competitor.times_played %>
+    </p>
 
-<p>
-  <b>Wins:</b>
-  <%= @competitor.wins %>
-</p>
+    <p>
+      <b>Elo:</b>
+      <%= @competitor.elo %>
+    </p>
+</div>
+</div>
 
-<p>
-  <b>Times played:</b>
-  <%= @competitor.times_played %>
-</p>
+<div class="row">
+  <div class="span4">
+    <p>
+      <b>Description:</b>
+      <%= @competitor.description %>
+    </p>
+</div>
+</div>
 
-<p>
-  <b>Elo:</b>
-  <%= @competitor.elo %>
-</p>
-
-<% unless @competitor.photo_url.nil? %>
-  <p><%= image_tag @competitor.photo_url %></p>
-<% end %>
-
-<%= link_to 'Edit', edit_competitor_path(@competitor) %> |
-<%= link_to 'Back', competitors_path %>
+<%= link_to raw("<i class='icon-edit'></i> Edit"), edit_competitor_path(@competitor), :class => 'btn' %> 
+<%= link_to raw("<i class='icon-th-list icon-white'></i> List all"), competitors_path, :class => 'btn btn-primary' %>

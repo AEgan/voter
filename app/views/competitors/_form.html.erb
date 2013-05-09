@@ -1,5 +1,5 @@
-<%= simple_form_for @competitor, :html => { :multipart => true } do |f| %>
-  
+<%= simple_form_for @competitor, :html => { :multipart => true, :class => 'form-horizontal' } do |f| %>
+  <legend><%= controller.action_name.capitalize %> Competitor </legend>
   <fieldset>
     <%= f.input :name %>
     <%= f.input :description %>

@@ -4,10 +4,10 @@
 <table class='table table-striped table-bordered table-hover '>
   <thead>
     <th>Place</th>
-    <th>Name</th>
-    <th>Elo</th>
-    <th>Wins</th>
-    <th>Times played</th>
+    <th><%= link_to "Name", competitors_path(:sort => "name") %></th>
+    <th><%= link_to "Elo", competitors_path %></th>
+    <th><%= link_to "Wins", competitors_path(:sort => "wins") %></th>
+    <th><%= link_to "Times Played", competitors_path(:sort => "times") %></th>
     <th></th>
   </thead>
 <% i = 1 %>

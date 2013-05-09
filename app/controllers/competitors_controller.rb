@@ -2,7 +2,22 @@ class CompetitorsController < ApplicationController
   # GET /competitors
   # GET /competitors.json
   def index
-    @competitors = Competitor.by_elo
+    # i know the if and else are the same
+    # but just to be sure so I don't have to do it again
+    if(params[:sort].nil?)
+      @competitors = Competitor.by_elo
+    elsif params[:sort].eql?("name")
+      @competitors = Competitor.alphabetical
+    elsif params[:sort].eql?("wins")
+      @competitors = Competitor.by_wins
+    elsif params[:sort].eql?("times")
+      @competitors = Competitor.by_times_played
+    else
+      @competitors = Competitor.by_elo
+    end
+        
+        
+        
 
     respond_to do |format|
       format.html # index.html.erb

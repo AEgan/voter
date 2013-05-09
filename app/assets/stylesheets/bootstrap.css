@@ -6074,6 +6074,8 @@ button.close {
   textarea,
   .uneditable-input {
     margin-left: 0;
+    height: 100px;
+    width: 300px;
   }
   .controls-row [class*="span"] + [class*="span"] {
     margin-left: 30px;
