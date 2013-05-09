@@ -34,10 +34,14 @@ class Competitor < ActiveRecord::Base
   def update_elo(otherCompetitor, win)
   	selfoffset = 20 * (2 - exp_rate(otherCompetitor.elo))
   	otheroffset = 20 * (2 - exp_rate(self.elo))
+  	self.times_played = self.times_played + 1
+  	otherCompetitor.times_played = otherCompetitor.times_played + 1
   	if(win)
+  		self.wins = self.wins + 1
   		self.elo = self.elo + selfoffset
   		otherCompetitor.elo = otherCompetitor.elo - otheroffset
   	else
+  		otherCompetitor.wins = otherCompetitor.wins + 1
   		self.elo = self.elo - selfoffset
   		otherCompetitor.elo = otherCompetitor.elo + otheroffset
   	end

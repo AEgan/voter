@@ -1,7 +1,10 @@
 Voter::Application.routes.draw do
   resources :competitors
 
-
+  match 'home' => 'home#index', :as => :home
+  match 'search' => 'home#search', :as => :search
+  match 'vote' => 'home#vote', :as => :vote
+  root :to => 'home#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
