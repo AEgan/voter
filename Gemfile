@@ -7,6 +7,7 @@ gem 'jquery-rails', '2.2.1'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'simple_form', '2.0.4'
 gem 'cancan'
+gem 'carrierwave'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

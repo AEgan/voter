@@ -1,4 +1,4 @@
-<%= form_for(@competitor) do |f| %>
+<%= form_for @competitor, :html => { :multipart => true } do |f| %>
   <% if @competitor.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@competitor.errors.count, "error") %> prohibited this competitor from being saved:</h2>
@@ -30,6 +30,10 @@
   <div class="field">
     <%= f.label :elo %><br />
     <%= f.text_field :elo %>
+  </div>
+    <div class="field">
+    <%= f.label :photo %><br />
+    <%= f.file_field :photo %>
   </div>
   <div class="actions">
     <%= f.submit %>

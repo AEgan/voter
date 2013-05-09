@@ -1,7 +1,10 @@
 class Competitor < ActiveRecord::Base
 	# a name is used instead of a first and last name because what if someone wants to compare things
 	# and not people?
-  attr_accessible :description, :elo, :name, :times_played, :wins
+  attr_accessible :description, :elo, :name, :times_played, :wins, :photo
+
+  # uploaded for photos
+  mount_uploader :photo, PhotoUploader
 
   # simple validations
   validates_presence_of :name

@@ -25,6 +25,9 @@
   <%= @competitor.elo %>
 </p>
 
+<% unless @competitor.photo_url.nil? %>
+  <p><%= image_tag @competitor.photo_url %></p>
+<% end %>
 
 <%= link_to 'Edit', edit_competitor_path(@competitor) %> |
 <%= link_to 'Back', competitors_path %>
