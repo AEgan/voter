@@ -1,0 +1,6 @@
+This is a simple app that I am developing because
+  I'm bored
+  I want this app to exist
+  I want practice using rails
+
+Also I want to use github. Feel free to help with this app it's all for fun
