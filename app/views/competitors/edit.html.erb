@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @competitor %> |
-<%= link_to 'Back', competitors_path %>
+<%= link_to raw("<i class='icon-search'></i> Show"), @competitor, :class => 'btn' %>
+<%= link_to raw("<i class='icon-th-list icon-white'></i> Back"), competitors_path, :class => 'btn btn-primary' %>
