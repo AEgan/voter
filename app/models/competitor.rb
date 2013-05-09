@@ -1,4 +1,6 @@
 class Competitor < ActiveRecord::Base
+	# a name is used instead of a first and last name because what if someone wants to compare things
+	# and not people?
   attr_accessible :description, :elo, :name, :times_played, :wins
 
   # simple validations
@@ -14,11 +16,11 @@ class Competitor < ActiveRecord::Base
   after_create :set_base_elo
 
   # scopes. Easy way to order everything for leaderboards and a simple search scope
-  scope :by_elo, order("elo")
+  scope :by_elo, order("elo DESC")
   scope :alphabetical, order("name")
   scope :search, lambda {|term| where("name LIKE ? OR description LIKE ?", "%#{term}%", "%#{term}%")}
-  scope :by_wins, order("wins")
-  scope :by_times_played, order("times_played")
+  scope :by_wins, order("wins DESC")
+  scope :by_times_played, order("times_played DESC")
   scope :random, order("RANDOM()").limit(2)
 
   # the odds of winning according to Elo's mind
@@ -29,13 +31,18 @@ class Competitor < ActiveRecord::Base
   # for now the K value (as it was described to me) will be set to 20. 
   # This will obviously become a function of times_played as I move in in the
   # development process
-  def update_elo(otherElo, win)
-  	offset = 20 * (2 - exp_rate(otherElo))
+  def update_elo(otherCompetitor, win)
+  	selfoffset = 20 * (2 - exp_rate(otherCompetitor.elo))
+  	otheroffset = 20 * (2 - exp_rate(self.elo))
   	if(win)
-  		self.elo = self.elo + offset
+  		self.elo = self.elo + selfoffset
+  		otherCompetitor.elo = otherCompetitor.elo - otheroffset
   	else
-  		self.elo = self.elo - offset
+  		self.elo = self.elo - selfoffset
+  		otherCompetitor.elo = otherCompetitor.elo + otheroffset
   	end
+  	self.save!
+  	otherCompetitor.save!
   end
 
 
