@@ -7,5 +7,10 @@
     <%= f.hidden_field :times_played, :value => 0 %>
     <%= f.hidden_field :elo, :value => 1200 %>
     <%= f.input :photo %>
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary'%>
+      <%= link_to 'Cancel', competitors_path, :class => 'btn' %>
+    </div>
   </fieldset>
 <% end %>
