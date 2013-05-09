@@ -16,9 +16,6 @@ class CompetitorsController < ApplicationController
       @competitors = Competitor.by_elo
     end
         
-        
-        
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @competitors }
@@ -29,7 +26,7 @@ class CompetitorsController < ApplicationController
   # GET /competitors/1.json
   def show
     @competitor = Competitor.find(params[:id])
-
+    @competitors = Competitor.by_elo
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @competitor }

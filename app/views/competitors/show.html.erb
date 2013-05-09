@@ -1,11 +1,15 @@
 <p id="notice"><%= notice %></p>
-<div class="row">
+<div class="row-fluid">
   <div class="span4">
     <% if !@competitor.photo_url.nil? %>
       <p><%= image_tag @competitor.photo_url %></p>
     <% else %>
       <p>Image unavailable</p>
     <% end %>
+    <p>
+      <b>Description:</b>
+      <%= @competitor.description unless @competitor.description.nil? %>
+    </p>
   </div>
   <div class="span8">
     <h2>About <%= @competitor.name %></h2>
@@ -26,17 +30,10 @@
 
     <p>
       <b>Elo:</b>
-      <%= @competitor.elo %>
+      <%= @competitor.elo.round(2) %>
     </p>
-</div>
-</div>
 
-<div class="row">
-  <div class="span4">
-    <p>
-      <b>Description:</b>
-      <%= @competitor.description %>
-    </p>
+    <%= render :partial => 'leaderboard' %>
 </div>
 </div>
 

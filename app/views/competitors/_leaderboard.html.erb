@@ -1,0 +1,21 @@
+<h3>Current Leaderboard</h3>
+<p class="supertiny">Determined by Elo's algorighm</p>
+<% if @competitors.count.zero? %>
+<b>No competitors at this time</b>
+<% else %>
+<table class="table table-striped table-hover table-bordered">
+	<thead>
+		<th>Place</th>
+		<th>Name</th>
+		<th>Elo</th>
+	</thead>
+	<% @competitors.each do |competitor| %>
+	<tr>
+		<td><%= @competitors.index(competitor) + 1 %></td>
+		<td><%= competitor.name %></td>
+		<td><%= competitor.elo.round(2) %></td>
+		<td><%= link_to raw("<i class='icon-edit'></i> Edit"), edit_competitor_path(competitor), :class => 'btn btn-small'%></td>
+	</tr>
+	<% end %>
+</table>
+<% end %>
