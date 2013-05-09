@@ -4,3 +4,6 @@ This is a simple app that I am developing because
   I want practice using rails
 
 Also I want to use github. Feel free to help with this app it's all for fun
+
+Basically people who use the app will be shown two options. They can choose 
+which one they prefer and vote for it. There will be leaderboards.
