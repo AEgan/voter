@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   attr_accessible :active, :email, :first_name, :last_name, :password, :password_confirmation, :role
 
   # validations
-  validates_presence_of :email
+  validates_presence_of :email, :last_name, :first_name
   validates_uniqueness_of :email, :case_sensitive => false
   validates_format_of :email, :with => /^[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))$/i, :message => "is not a valid format"
   validates_inclusion_of :active, :in => [true, false], :message => "must be true or false"
@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   scope :alphabetical, order("last_name, first_name")
   scope :active, where("active = ?", true)
   scope :inactive, where("active = ?", false)
+  scope :admins, where("role = ?", "admin")
+  scope :members, where("role = ?", "member")
 
   ROLES = [['Administrator', :admin],['Member', :member]]
 
