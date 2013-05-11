@@ -34,22 +34,23 @@ class Competitor < ActiveRecord::Base
   # for now the K value (as it was described to me) will be set to 20. 
   # This will obviously become a function of times_played as I move in in the
   # development process
-  def update_elo(otherCompetitor, win)
-  	selfoffset = 20 * (2 - exp_rate(otherCompetitor.elo))
+  # this was updated so that it is only called on the winner, passing in the losing
+  # competitor 
+  def update_elo(losingCompetitor)
+    # get offset based on (right now) a static K value of 20
+  	selfoffset = 20 * (2 - exp_rate(losingCompetitor.elo))
   	otheroffset = 20 * (2 - exp_rate(self.elo))
+    # update the number of times played 
   	self.times_played = self.times_played + 1
-  	otherCompetitor.times_played = otherCompetitor.times_played + 1
-  	if(win)
-  		self.wins = self.wins + 1
-  		self.elo = self.elo + selfoffset
-  		otherCompetitor.elo = otherCompetitor.elo - otheroffset
-  	else
-  		otherCompetitor.wins = otherCompetitor.wins + 1
-  		self.elo = self.elo - selfoffset
-  		otherCompetitor.elo = otherCompetitor.elo + otheroffset
-  	end
+  	losingCompetitor.times_played = losingCompetitor.times_played + 1
+    # update win
+		self.wins = self.wins + 1
+    #update elo
+		self.elo = self.elo + selfoffset
+		losingCompetitor.elo = losingCompetitor.elo - otheroffset
+    #save!
   	self.save!
-  	otherCompetitor.save!
+  	losingCompetitor.save!
   end
 
 

@@ -14,27 +14,27 @@
       <img src="./assets/0.7.1/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2013-05-10T23:09:43-04:00">2013-05-10T23:09:43-04:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2013-05-11T01:11:01-04:00">2013-05-11T01:11:01-04:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">48.5%</span></span>
+    (<span class="covered_percent"><span class="red">49.08%</span></span>
      covered at
      <span class="covered_strength">
        <span class="red">
-         0.87
+         0.9
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>11</b> files in total.
-    <b>167</b> relevant lines. 
-    <span class="green"><b>81</b> lines covered</span> and
-    <span class="red"><b>86</b> lines missed </span>
+    <b>163</b> relevant lines. 
+    <span class="green"><b>80</b> lines covered</span> and
+    <span class="red"><b>83</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -132,12 +132,12 @@
       
       <tr>
         <td class="strong"><a href="#9aa9c4d6024fac5a8918356b1a949d281b8a45e6" class="src_link" title="app/models/competitor.rb">app/models/competitor.rb</a></td>
-        <td class="green strong">91.18 %</td>
-        <td>61</td>
-        <td>34</td>
-        <td>31</td>
-        <td>3</td>
-        <td>2.0</td>
+        <td class="green strong">100.0 %</td>
+        <td>62</td>
+        <td>30</td>
+        <td>30</td>
+        <td>0</td>
+        <td>2.3</td>
       </tr>
       
       <tr>
@@ -246,20 +246,20 @@
           <div class="file_list_container" id="Models">
   <h2>
     <span class="group_name">Models</span>
-    (<span class="covered_percent"><span class="green">94.44%</span></span>
+    (<span class="covered_percent"><span class="green">100.0%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.6
+         1.75
        </span>
     </span> hits/line)
   </h2>
   <a name="Models"></a>
   <div>
     <b>2</b> files in total.
-    <b>54</b> relevant lines. 
-    <span class="green"><b>51</b> lines covered</span> and
-    <span class="red"><b>3</b> lines missed </span>
+    <b>50</b> relevant lines. 
+    <span class="green"><b>50</b> lines covered</span> and
+    <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -277,12 +277,12 @@
       
       <tr>
         <td class="strong"><a href="#9aa9c4d6024fac5a8918356b1a949d281b8a45e6" class="src_link" title="app/models/competitor.rb">app/models/competitor.rb</a></td>
-        <td class="green strong">91.18 %</td>
-        <td>61</td>
-        <td>34</td>
-        <td>31</td>
-        <td>3</td>
-        <td>2.0</td>
+        <td class="green strong">100.0 %</td>
+        <td>62</td>
+        <td>30</td>
+        <td>30</td>
+        <td>0</td>
+        <td>2.3</td>
       </tr>
       
       <tr>
@@ -1312,7 +1312,7 @@
         <li class="missed" data-hits="0" data-linenumber="22">
           
           
-          <code class="ruby">		winner.update_elo(loser, true)</code>
+          <code class="ruby">		winner.update_elo(loser)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="23">
@@ -1976,11 +1976,11 @@
         <div class="source_table" id="9aa9c4d6024fac5a8918356b1a949d281b8a45e6">
   <div class="header">
     <h3>app/models/competitor.rb</h3>
-    <h4><span class="green">91.18 %</span> covered</h4>
+    <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>34</b> relevant lines. 
-      <span class="green"><b>31</b> lines covered</span> and
-      <span class="red"><b>3</b> lines missed.</span>
+      <b>30</b> relevant lines. 
+      <span class="green"><b>30</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
   
@@ -2203,112 +2203,112 @@
           <code class="ruby">  # development process</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="37">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="37">
           
-          <code class="ruby">  def update_elo(otherCompetitor, win)</code>
+          
+          <code class="ruby">  # this was updated so that it is only called on the winner, passing in the losing</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="38">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="38">
           
-          <code class="ruby">  	selfoffset = 20 * (2 - exp_rate(otherCompetitor.elo))</code>
+          
+          <code class="ruby">  # competitor </code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="39">
           <span class="hits">1</span>
           
-          <code class="ruby">  	otheroffset = 20 * (2 - exp_rate(self.elo))</code>
+          <code class="ruby">  def update_elo(losingCompetitor)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="40">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="40">
           
-          <code class="ruby">  	self.times_played = self.times_played + 1</code>
+          
+          <code class="ruby">    # get offset based on (right now) a static K value of 20</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="41">
           <span class="hits">1</span>
           
-          <code class="ruby">  	otherCompetitor.times_played = otherCompetitor.times_played + 1</code>
+          <code class="ruby">  	selfoffset = 20 * (2 - exp_rate(losingCompetitor.elo))</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="42">
           <span class="hits">1</span>
           
-          <code class="ruby">  	if(win)</code>
+          <code class="ruby">  	otheroffset = 20 * (2 - exp_rate(self.elo))</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="43">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="43">
           
-          <code class="ruby">  		self.wins = self.wins + 1</code>
+          
+          <code class="ruby">    # update the number of times played </code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="44">
           <span class="hits">1</span>
           
-          <code class="ruby">  		self.elo = self.elo + selfoffset</code>
+          <code class="ruby">  	self.times_played = self.times_played + 1</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="45">
           <span class="hits">1</span>
           
-          <code class="ruby">  		otherCompetitor.elo = otherCompetitor.elo - otheroffset</code>
+          <code class="ruby">  	losingCompetitor.times_played = losingCompetitor.times_played + 1</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="46">
           
           
-          <code class="ruby">  	else</code>
+          <code class="ruby">    # update win</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="47">
-          
-          
-          <code class="ruby">  		otherCompetitor.wins = otherCompetitor.wins + 1</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="48">
-          
-          
-          <code class="ruby">  		self.elo = self.elo - selfoffset</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="49">
-          
-          
-          <code class="ruby">  		otherCompetitor.elo = otherCompetitor.elo + otheroffset</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="50">
-          
-          
-          <code class="ruby">  	end</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="51">
+        <li class="covered" data-hits="1" data-linenumber="47">
           <span class="hits">1</span>
           
-          <code class="ruby">  	self.save!</code>
+          <code class="ruby">		self.wins = self.wins + 1</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="48">
+          
+          
+          <code class="ruby">    #update elo</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="49">
+          <span class="hits">1</span>
+          
+          <code class="ruby">		self.elo = self.elo + selfoffset</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="50">
+          <span class="hits">1</span>
+          
+          <code class="ruby">		losingCompetitor.elo = losingCompetitor.elo - otheroffset</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="51">
+          
+          
+          <code class="ruby">    #save!</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="52">
           <span class="hits">1</span>
           
-          <code class="ruby">  	otherCompetitor.save!</code>
+          <code class="ruby">  	self.save!</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="53">
+        <li class="covered" data-hits="1" data-linenumber="53">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">  	losingCompetitor.save!</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="54">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="55">
@@ -2317,37 +2317,43 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="56">
+        <li class="never" data-hits="" data-linenumber="56">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="57">
           <span class="hits">1</span>
           
           <code class="ruby">  private</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="57">
+        <li class="never" data-hits="" data-linenumber="58">
           
           
           <code class="ruby">  # make sure the elo is set off the start</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="58">
+        <li class="covered" data-hits="1" data-linenumber="59">
           <span class="hits">1</span>
           
           <code class="ruby">  def set_base_elo</code>
         </li>
       
-        <li class="covered" data-hits="33" data-linenumber="59">
+        <li class="covered" data-hits="33" data-linenumber="60">
           <span class="hits">33</span>
           
           <code class="ruby">  	self.elo = 1200</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="60">
+        <li class="never" data-hits="" data-linenumber="61">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="61">
+        <li class="never" data-hits="" data-linenumber="62">
           
           
           <code class="ruby">end</code>

@@ -17,9 +17,8 @@ class HomeController < ApplicationController
 	def vote
 		winner = Competitor.find(params[:winner_id]) unless params[:winner_id].nil?
 		loser = Competitor.find(params[:loser_id]) unless params[:loser_id].nil?
-		# just realized the way I am doing this doesn't need to bool as a param
-		# but I don't want to switch up every call to this just yet
-		winner.update_elo(loser, true)
+		# new version of update_elo method is called on the winner, passing in loser
+		winner.update_elo(loser)
 		redirect_to home_path
 	end
 end

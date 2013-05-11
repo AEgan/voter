@@ -113,7 +113,7 @@ class CompetitorTest < ActiveSupport::TestCase
 		end
 
 		should "have an elo lower after a loss, raise after a win" do
-			@doc.update_elo(@kearney, true)
+			@doc.update_elo(@kearney)
 			assert @doc.elo > @kearney.elo
 		end
   end
