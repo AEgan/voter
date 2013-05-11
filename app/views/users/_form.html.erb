@@ -5,9 +5,15 @@
     <%= f.input :first_name %>
     <%= f.input :last_name %>
     <%= f.input :email %>
-    <%= f.input :password_digest %>
-    <%= f.input :role %>
-    <%= f.input :active %>
+    <%= f.input :password %>
+    <%= f.input :password_confirmation %>
+    <% if current_user.admin? %>
+      <%= f.input :role, :collection => User::ROLES %>
+      <%= f.input :active %>
+    <% else %>
+      <%= f.hidden_field :role, :value => "member" %>
+      <%= f.hidden_field :active, :value => true %>
+    <% end %>
   </div>
 
   <div class="form-actions">

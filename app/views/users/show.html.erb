@@ -16,11 +16,6 @@
 </p>
 
 <p>
-  <b>Password digest:</b>
-  <%= @user.password_digest %>
-</p>
-
-<p>
   <b>Role:</b>
   <%= @user.role %>
 </p>
@@ -31,5 +26,7 @@
 </p>
 
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to raw("<i class='icon-edit'></i> Edit"), edit_user_path(@user), :class => 'btn' %> 
+<% if can? :index, User %>
+  <%= link_to raw("<i class='icon-th-list icon-white'></i> List All Users"), users_path, :class => 'btn btn-primary' %>
+<% end %>
