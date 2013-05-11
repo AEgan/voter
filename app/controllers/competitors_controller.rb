@@ -1,4 +1,5 @@
 class CompetitorsController < ApplicationController
+  before_filter :check_login, :except => [:index, :show]
   # GET /competitors
   # GET /competitors.json
   def index

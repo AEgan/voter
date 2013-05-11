@@ -1,8 +1,10 @@
 Voter::Application.routes.draw do
   resources :users
-
-
   resources :competitors
+  resources :sessions
+
+  match 'logout' => 'sessions#destroy', :as => :logout
+  match 'login' => 'sessions#new', :as => :login
 
   match 'home' => 'home#index', :as => :home
   match 'search' => 'home#search', :as => :search

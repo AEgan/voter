@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130510234312) do
+ActiveRecord::Schema.define(:version => 20130511053824) do
 
   create_table "competitors", :force => true do |t|
     t.string   "name"
