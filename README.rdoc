@@ -3,7 +3,8 @@ This is a simple app that I am developing because
   I want this app to exist
   I want practice using rails
 
-Also I want to use github. Feel free to help with this app it's all for fun
-
+Also I want to use github. Feel free to help with this app it's all for fun.
+This is also going to be a project I'll be working on to experiment with some
+new things I haven't worked on before, or to reinforce the things I have.
 Basically people who use the app will be shown two options. They can choose 
 which one they prefer and vote for it. There will be leaderboards.
