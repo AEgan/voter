@@ -1,4 +1,7 @@
 Voter::Application.routes.draw do
+  resources :users
+
+
   resources :competitors
 
   match 'home' => 'home#index', :as => :home
