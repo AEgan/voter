@@ -10,8 +10,20 @@
 
   <div class="wrapper">
     <div class="container">
-  
-
+      <!-- Temporary until I want it to look nicer, just to verify that you are logged in -->
+      <% if logged_in? %>
+        <%= link_to 'Logout', logout_path %>
+        <br>[<%= current_user.last_name %>:<%= current_user.role %>]
+      <% else %>
+        <%= link_to 'Login', login_path %>
+      <% end %>
+            <!-- flash messages -->
+      <% flash.each do |name, msg| %>
+        <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+          <a class="close" data-dismiss="alert">&times;</a>
+          <%= msg %>
+        </div>
+      <% end %>
 
       <div class="navbar navbar-inverse">
         <div class="navbar-inner navbar-fixed-top ">

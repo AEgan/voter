@@ -38,7 +38,7 @@ class CompetitorsController < ApplicationController
   # GET /competitors/new.json
   def new
     @competitor = Competitor.new
-
+    authorize! :new, @competitor
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @competitor }
@@ -48,12 +48,14 @@ class CompetitorsController < ApplicationController
   # GET /competitors/1/edit
   def edit
     @competitor = Competitor.find(params[:id])
+    authorize! :update, @competitor
   end
 
   # POST /competitors
   # POST /competitors.json
   def create
     @competitor = Competitor.new(params[:competitor])
+    authorize! :new, @competitor
 
     respond_to do |format|
       if @competitor.save
@@ -70,6 +72,7 @@ class CompetitorsController < ApplicationController
   # PUT /competitors/1.json
   def update
     @competitor = Competitor.find(params[:id])
+    authorize! :update, @competitor
 
     respond_to do |format|
       if @competitor.update_attributes(params[:competitor])
@@ -86,6 +89,7 @@ class CompetitorsController < ApplicationController
   # DELETE /competitors/1.json
   def destroy
     @competitor = Competitor.find(params[:id])
+    authorize! :destroy, @competitor
     @competitor.destroy
 
     respond_to do |format|

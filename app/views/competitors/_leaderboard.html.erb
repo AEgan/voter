@@ -8,13 +8,18 @@
 		<th>Place</th>
 		<th>Name</th>
 		<th>Elo</th>
+		<% if can? :edit, @competitors %>
+			<th></th>
+		<% end %>
 	</thead>
 	<% @competitors.each do |competitor| %>
 	<tr>
 		<td><%= @competitors.index(competitor) + 1 %></td>
 		<td><%= competitor.name %></td>
 		<td><%= competitor.elo.round(2) %></td>
+		<% if can? :edit, competitor %>
 		<td><%= link_to raw("<i class='icon-edit'></i> Edit"), edit_competitor_path(competitor), :class => 'btn btn-small'%></td>
+		<% end %>
 	</tr>
 	<% end %>
 </table>

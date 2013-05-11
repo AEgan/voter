@@ -36,6 +36,7 @@
     <%= render :partial => 'leaderboard' %>
 </div>
 </div>
-
-<%= link_to raw("<i class='icon-edit'></i> Edit"), edit_competitor_path(@competitor), :class => 'btn' %> 
+<% if can? :edit, @competitor %>
+  <%= link_to raw("<i class='icon-edit'></i> Edit"), edit_competitor_path(@competitor), :class => 'btn' %>
+<% end %>
 <%= link_to raw("<i class='icon-th-list icon-white'></i> List all"), competitors_path, :class => 'btn btn-primary' %>
