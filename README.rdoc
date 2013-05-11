@@ -8,3 +8,8 @@ This is also going to be a project I'll be working on to experiment with some
 new things I haven't worked on before, or to reinforce the things I have.
 Basically people who use the app will be shown two options. They can choose 
 which one they prefer and vote for it. There will be leaderboards.
+
+If you are going to work on this and didn't see already, there is a default admin that
+will be added when you migrate the database. 
+	Email: admin@example.com
+	password: secret
