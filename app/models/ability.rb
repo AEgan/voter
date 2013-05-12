@@ -14,6 +14,8 @@ class Ability
         end
       else
         can :read, Competitor
+        can :create, User
+        can :new, User
       end
     #
     # The first argument to `can` is the action you are giving the user 

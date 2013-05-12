@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :check_login
+  before_filter :check_login, :except => [:new, :create]
   # GET /users
   # GET /users.json
   def index
@@ -26,7 +26,6 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     @user = User.new
-    authorize! :new, @user
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }
@@ -43,10 +42,10 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
-    authorize! :new, @user
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        session[:user_id] = @user.id
+        format.html { redirect_to home_path, notice: 'You have been registered!' }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }

@@ -8,6 +8,9 @@
 			<% end %>
 			<li><%= link_to "#{current_user.proper_name}", user_path(current_user) %></li>
 			<li><%= link_to "Log Out", logout_path %></li>
+		<% else %>
+			<li><%= link_to "Log In", login_path %></li>
+			<li><%= link_to "Sign Up", new_user_path %></li>
 		<% end %>
 	</ul>
 </div>
