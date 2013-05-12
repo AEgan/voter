@@ -39,7 +39,7 @@ class CompetitorTest < ActiveSupport::TestCase
 
   # contest_id
   should allow_value(5).for(:contest_id)
-  should allow_value(0).for(:contest_id)
+  should_not allow_value(0).for(:contest_id)
   should_not allow_value(-1).for(:contest_id)
   should_not allow_value(3.14).for(:contest_id)
   should_not allow_value(nil).for(:contest_id)
@@ -53,35 +53,47 @@ class CompetitorTest < ActiveSupport::TestCase
 
   	# create competitor context
   	setup do
-  		@doc = FactoryGirl.create(:competitor)
-  		@kearney = FactoryGirl.create(:competitor, :wins => 3, :elo => 1300, :name => "Brian Kearney", :times_played => 1)
-  		@miller = FactoryGirl.create(:competitor, :name => "Matt Miller", :wins => 4, :times_played => 2)
+      @user = FactoryGirl.create(:user, :email => "different@example.com")
+      @contestA = FactoryGirl.create(:contest, :user => @user)
+      @contestB = FactoryGirl.create(:contest, :user => @user, :name => "Contest B")
+  		@doc = FactoryGirl.create(:competitor, :contest => @contestA)
+  		@kearney = FactoryGirl.create(:competitor, :contest => @contestA, :wins => 3, :elo => 1300, :name => "Brian Kearney", :times_played => 1)
+  		@miller = FactoryGirl.create(:competitor, :contest => @contestB, :name => "Matt Miller", :wins => 4, :times_played => 2)
   	end
   	# destroy
   	teardown do
+      @user.destroy
+      @contestA.destroy
+      @contestB.destroy
   		@doc.destroy
   		@kearney.destroy
   		@miller.destroy
   	end
 
+    # testing to make sure the factories work
   	should "show that factories are working as expected " do
   		assert @doc.wins == 0
   		assert_equal @kearney.name, "Brian Kearney"
   		assert_equal 4, @miller.wins
   		assert_equal 3, Competitor.all.size
+      assert_equal "Alex", @user.first_name
+      assert_equal "A Test Contest", @contestA.name
+      assert_equal "Contest B", @contestB.name
   	end
 
+    # checking the callback
   	should "have a callback that sets the default elo to 1200 on create" do
   		assert_equal 1200, @doc.elo
   		assert_equal 1200, @kearney.elo
   		assert_equal 1200, @miller.elo
   	end
 
+    # unique names
+    # This will soon be changed, the test will be for each contest to have unique competitor names
+    # so the same name can exist in the system as long as it is in a different contest
   	should "not allow competitors without unique names to be created " do
-  		docAgain = FactoryGirl.build(:competitor)
-  		kearneyAgain = FactoryGirl.build(:competitor, :name => "Brian Kearney")
-  		docAgain.destroy
-  		kearneyAgain.destroy
+  		docAgain = FactoryGirl.build(:competitor, :contest => @contestA)
+  		kearneyAgain = FactoryGirl.build(:competitor, :name => "Brian Kearney", :contest => @contestA)
   		deny docAgain.valid?
   		deny kearneyAgain.valid?
   	end
@@ -115,6 +127,15 @@ class CompetitorTest < ActiveSupport::TestCase
 	  should "have a scope that returns two random records" do
 	  	assert_equal 2, Competitor.random.size
 		end
+
+    should "have a scope that returns competitors for a given contest" do
+      forA = Competitor.for_contest(@contestA.id)
+      forB = Competitor.for_contest(@contestB.id)
+      assert_equal 2, forA.size
+      assert forA.include?(@doc)
+      assert forA.include?(@kearney)
+      assert_equal [@miller], forB
+    end
 
 		should "show a competitor with a higher elo will have a higher expected win rate, equal will be equal" do
 			@doc.update_attribute(:elo, 1500)

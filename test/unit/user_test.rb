@@ -2,6 +2,10 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
 
+  # relationships
+  should have_many(:contests)
+  should have_many(:competitors).through(:contests)
+  
 	# matchers 
 
   # tests for role
@@ -129,19 +133,35 @@ class UserTest < ActiveSupport::TestCase
   		deny bad2.valid?
   	end
 
+    # METHODS
+    # admin method
   	should "have a method to test if a user is an admin" do
   		assert @alex.admin?
   		deny @ryan.admin?
   	end
 
+    # member method
   	should "have a method to see if a user is a member" do
   		assert @ryan.member?
   		deny @alex.member?
   	end
 
+    # authenticate method
   	should "have working authenticate method" do
       deny User.authenticate('alex@example.com', 'notsecret')
       assert User.authenticate('ryan@example.com', 'secret')
+    end
+
+    # name
+    should "have a method to return a name is last, first format" do
+      assert_equal "Egan, Alex", @alex.name
+      assert_equal "Egan, Ryan", @ryan.name
+    end 
+
+    # proper name
+    should "have a method to return a name of a user in first last format" do
+      assert_equal "Alex Egan", @alex.proper_name
+      assert_equal "Ryan Egan", @ryan.proper_name
     end
 
   end

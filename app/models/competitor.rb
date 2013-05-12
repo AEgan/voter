@@ -11,6 +11,7 @@ class Competitor < ActiveRecord::Base
 
   # simple validations
   validates_presence_of :name, :contest_id
+  # for now I am going to keep this validation, later will be updated to unique name for a given contest
   validates_uniqueness_of :name, :case_sensitive => false
   validates_numericality_of :wins, :only_integer => true, :greater_than_or_equal_to => 0, :allow_blank => false
   validates_numericality_of :times_played, :only_integer => true, :greater_than_or_equal_to => 0, :allow_blank => false

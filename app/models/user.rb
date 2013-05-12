@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   # relationships
   has_many :contests
+  has_many :competitors, :through => :contests
 
   # validations
   validates_presence_of :email, :last_name, :first_name
