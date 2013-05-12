@@ -13,3 +13,14 @@ If you are going to work on this and didn't see already, there is a default admi
 will be added when you migrate the database. 
 	Email: admin@example.com
 	password: secret
+
+Here is the basic idea of the app
+There are users
+The users can create contests
+Contests consist of competitors
+Anybody can vote on which competitor is 'better'. 'Better' relates to the description of the contest
+I am trying to implement an Elo type ranking system, but that is not as important as other things at the momment
+
+Thanks for reading
+
+Built with all the love in the world by aegan <345
