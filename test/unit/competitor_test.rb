@@ -94,10 +94,13 @@ class CompetitorTest < ActiveSupport::TestCase
   	should "not allow competitors without unique names to be created " do
   		docAgain = FactoryGirl.build(:competitor, :contest => @contestA)
   		kearneyAgain = FactoryGirl.build(:competitor, :name => "Brian Kearney", :contest => @contestA)
+      millerAgain = FactoryGirl.build(:competitor, :name => "MaTT mIlLeR", :contest => @contestA)
   		deny docAgain.valid?
   		deny kearneyAgain.valid?
+      deny millerAgain.valid?
   	end
 
+    # elo scope
   	should "have a scope returning competitors in decending order by their elo" do
   		@doc.update_attribute(:elo, 1800.0)
   		@kearney.update_attribute(:elo, 1000.0)
@@ -108,26 +111,32 @@ class CompetitorTest < ActiveSupport::TestCase
   		assert_equal [@doc.name, @miller.name, @kearney.name], Competitor.by_elo.map { |c| c.name }
   	end
 
+    # scope to order by wins
   	should "have a scope to return competitors in decending order by their wins " do
   		assert_equal [@miller.name, @kearney.name, @doc.name], Competitor.by_wins.map { |c| c.name }
   	end
 
+    # scope to order by times played
   	should "have a scope to return competitors in decending order by their times played" do
   		assert_equal [@miller.name, @kearney.name, @doc.name], Competitor.by_times_played.map { |c| c.name }
   	end
 
+    # scope to order alphabetically
   	should "have a scope to return competitors in alphabetical order" do
   		assert_equal [@kearney.name, @miller.name, @doc.name], Competitor.alphabetical.map { |c| c.name }
   	end
 
+    # scope to search. More on this later
   	should "have a scope for basic search" do
   		assert_equal [@kearney.name], Competitor.search("Kearney").map { |c| c.name }
 	  end
 
+    # scope that returns two random records (for the voting process)
 	  should "have a scope that returns two random records" do
 	  	assert_equal 2, Competitor.random.size
 		end
 
+    # scope that retuns competitors for a passed in contest
     should "have a scope that returns competitors for a given contest" do
       forA = Competitor.for_contest(@contestA.id)
       forB = Competitor.for_contest(@contestB.id)
@@ -137,6 +146,7 @@ class CompetitorTest < ActiveSupport::TestCase
       assert_equal [@miller], forB
     end
 
+    # testing the expected rate method
 		should "show a competitor with a higher elo will have a higher expected win rate, equal will be equal" do
 			@doc.update_attribute(:elo, 1500)
 			@doc.save!
@@ -144,6 +154,7 @@ class CompetitorTest < ActiveSupport::TestCase
 			assert_equal @kearney.exp_rate(@miller.elo), @miller.exp_rate(@kearney.elo)
 		end
 
+    # update elo method
 		should "have an elo lower after a loss, raise after a win" do
 			@doc.update_elo(@kearney)
 			assert @doc.elo > @kearney.elo

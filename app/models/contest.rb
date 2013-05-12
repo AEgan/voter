@@ -7,6 +7,7 @@ class Contest < ActiveRecord::Base
 
   # validations
   validates_numericality_of :user_id, :only_integer => true, :greater_than => 0, :allow_blank => false
+  validates_uniqueness_of :name, :case_sensitive => false
   validates_presence_of :user_id, :name
   validates_inclusion_of :active, :in => [true, false], :message => "must be true or false"
   
@@ -15,8 +16,5 @@ class Contest < ActiveRecord::Base
   scope :alphabetical, order("name")
   scope :active, where("active = ?", true)
   scope :inactive, where("active = ?", false)
-
-
-
 
 end
