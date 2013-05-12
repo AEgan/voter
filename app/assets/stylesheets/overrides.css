@@ -31,10 +31,11 @@ li.searchnav {
 .centered {
      margin-left: auto;
      margin-right: auto;
-     padding-right: auto;
-     padding-left: auto;
 }
 
+.controls.centered {
+     text-align: center;
+}
 .well .centered img {
      padding-left: 15px;
 }

@@ -9,9 +9,17 @@ class Ability
         can :manage, :all
       elsif user.member?
         can :read, Competitor
-        can :manage, User do |u|
+        can :edit, User do |u|
             user.id == u.id
         end
+        can :update, User do |u|
+            user.id == u.id
+        end
+        can :show, User do |u|
+          user.id == u.id
+        end
+        cannot :new, User
+        cannot :create, User
       else
         can :read, Competitor
         can :create, User

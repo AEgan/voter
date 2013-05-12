@@ -26,9 +26,10 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     @user = User.new
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @user }
+    # I want to do this using cancan but I am having some issues so I brute forced it
+    if(current_user && current_user.member?)
+      redirect_to home_path
+      flash[:error] = "You do not have access to this page."
     end
   end
 
