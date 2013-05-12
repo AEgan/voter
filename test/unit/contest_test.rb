@@ -15,13 +15,6 @@ class ContestTest < ActiveSupport::TestCase
 
   # shouldas
 
-  # user_id
-  should allow_value(5).for(:user_id)
-  should_not allow_value(0).for(:user_id)
-  should_not allow_value(-1).for(:user_id)
-  should_not allow_value(3.14).for(:user_id)
-  should_not allow_value(nil).for(:user_id)
-
   # active
   should allow_value(true).for(:active)
   should allow_value(false).for(:active)
@@ -38,6 +31,7 @@ class ContestTest < ActiveSupport::TestCase
   	setup do
   		@userA = FactoryGirl.create(:user)
   		@userB = FactoryGirl.create(:user, :first_name => "Ryan", :email => "ryan@example.com")
+  		@inactiveUser = FactoryGirl.create(:user, :first_name => "Not", :last_name => "Active", :email => "notactive@example.com", :active => false)
   		@contest1 = FactoryGirl.create(:contest, :user => @userA)
   		@contest2 = FactoryGirl.create(:contest, :user => @userA, :name => "Z Test Contest")
   		@contest3 = FactoryGirl.create(:contest, :user => @userB, :name => "C Test Contest", :active => false)
@@ -47,6 +41,7 @@ class ContestTest < ActiveSupport::TestCase
   	teardown do
   		@userA.destroy
   		@userB.destroy
+  		@inactiveUser.destroy
   		@contest1.destroy
   		@contest2.destroy
   		@contest3.destroy
@@ -56,6 +51,7 @@ class ContestTest < ActiveSupport::TestCase
   	should "have working factories for the tests" do
   		assert_equal "Alex", @userA.first_name
   		assert_equal "Ryan", @userB.first_name
+  		assert_equal "Active", @inactiveUser.last_name
   		assert_equal "A Test Contest", @contest1.name
   		assert_equal "Z Test Contest", @contest2.name
   		assert_equal "C Test Contest", @contest3.name
@@ -99,5 +95,12 @@ class ContestTest < ActiveSupport::TestCase
   	should "have a test to return only inactive records" do
   		assert_equal [@contest3], Contest.inactive
   	end 
+
+  	# tests that a contest isn't valid if it belongs to an inactive user
+  	should "not allow a contest to be created if it is associated with an inactive user" do
+  		badRecord = FactoryGirl.build(:contest, :user => @inactiveUser, :name => "Unique Name")
+  		deny badRecord.valid?
+  	end
+
   end
 end

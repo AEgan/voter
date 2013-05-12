@@ -10,11 +10,21 @@ class Contest < ActiveRecord::Base
   validates_uniqueness_of :name, :case_sensitive => false
   validates_presence_of :user_id, :name
   validates_inclusion_of :active, :in => [true, false], :message => "must be true or false"
+  validate :user_active_in_system, :on => :create
   
   # scopes
   scope :for_user, lambda {|uid| where("user_id = ?", uid) }
   scope :alphabetical, order("name")
   scope :active, where("active = ?", true)
   scope :inactive, where("active = ?", false)
+
+  private
+  #custom validation
+  def user_active_in_system
+    return true if self.user_id.nil?
+    unless User.active.map { |u| u.id }.include?(self.user_id)
+      errors.add(:user, "is not active in the system")
+    end
+  end
 
 end
