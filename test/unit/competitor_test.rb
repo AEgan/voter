@@ -5,11 +5,15 @@ class CompetitorTest < ActiveSupport::TestCase
   #   assert true
   # end
 
+  # relationships
+  should belong_to(:contest)
+
   # Validations
   should validate_presence_of(:name)
   should validate_numericality_of(:elo)
   should validate_numericality_of(:wins)
   should validate_numericality_of(:times_played)
+  should validate_numericality_of(:contest_id)
 
   # shouldas for numeric values
   # wins
@@ -32,6 +36,13 @@ class CompetitorTest < ActiveSupport::TestCase
   should allow_value(3.14).for(:elo)
   should_not allow_value(-1).for(:elo)
   should_not allow_value(nil).for(:elo)
+
+  # contest_id
+  should allow_value(5).for(:contest_id)
+  should allow_value(0).for(:contest_id)
+  should_not allow_value(-1).for(:contest_id)
+  should_not allow_value(3.14).for(:contest_id)
+  should_not allow_value(nil).for(:contest_id)
 
   # shouldas for name
   should allow_value("Doc").for(:name)

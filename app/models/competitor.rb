@@ -1,17 +1,21 @@
 class Competitor < ActiveRecord::Base
 	# a name is used instead of a first and last name because what if someone wants to compare things
 	# and not people?
-  attr_accessible :description, :elo, :name, :times_played, :wins, :photo
+  attr_accessible :description, :elo, :name, :times_played, :wins, :photo, :contest_id
+
+  # relationships
+  belongs_to :contest
 
   # uploaded for photos
   mount_uploader :photo, PhotoUploader
 
   # simple validations
-  validates_presence_of :name
+  validates_presence_of :name, :contest_id
   validates_uniqueness_of :name, :case_sensitive => false
   validates_numericality_of :wins, :only_integer => true, :greater_than_or_equal_to => 0, :allow_blank => false
   validates_numericality_of :times_played, :only_integer => true, :greater_than_or_equal_to => 0, :allow_blank => false
   validates_numericality_of :elo, :only_integer => false, :greater_than_or_equal_to => 0, :allow_blank => false
+  validates_numericality_of :contest_id, :only_integer => true, :greater_than_or_equal_to => 1, :allow_blank => false
 
   # callback so the elo is set appropriately when the competitor is created. Also makes it simple
   # to change if I want it change if I get a better understanding of the algo and want it changed
@@ -25,6 +29,7 @@ class Competitor < ActiveRecord::Base
   scope :by_wins, order("wins DESC")
   scope :by_times_played, order("times_played DESC")
   scope :random, order("RANDOM()").limit(2)
+  scope :for_contest, lambda {|cid| where("contest_id = ?", cid) }
 
   # the odds of winning according to Elo's mind
   def exp_rate(otherElo)

@@ -1,4 +1,7 @@
 Voter::Application.routes.draw do
+  resources :contests
+
+
   resources :users
   resources :competitors
   resources :sessions
