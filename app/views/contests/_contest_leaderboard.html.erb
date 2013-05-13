@@ -1,0 +1,24 @@
+<% if @competitors.empty? %>
+	<h4>None at this time</h4>
+<% else %>
+	<table class="table table-striped table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>Place</th>
+				<th>Name</th>
+				<th>Elo</th>
+				<th></th>
+			</tr>
+		</thead>
+		<% @competitors.each do |competitor| %>
+			<tr>
+				<td><%= @competitors.index(competitor) %></td>
+				<td><%= link_to competitor.name, competitor_path(competitor.id) %></td>
+				<td><%= competitor.elo.round(2)%></td>
+				<td><%= link_to raw("<i class='image-details image-white'></i> Details"), competitor_path(competitor.id) %></td>
+			</tr>
+		<% end %>
+
+		
+	</table>
+<% end %>

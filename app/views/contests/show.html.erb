@@ -1,19 +1,38 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
+	<div class="span4">
+		<h2>About <%= @contest.name %></h2>
+		<p>
+		  <b>Name:</b>
+		  <%= @contest.name %>
+		</p>
 
-<p>
-  <b>Name:</b>
-  <%= @contest.name %>
-</p>
+		<p>
+		  <b>Description:</b>
+		  <%= @contest.description %>
+		</p>
 
-<p>
-  <b>Description:</b>
-  <%= @contest.description %>
-</p>
+		<p>
+		  <b>Created By:</b>
+		  <%= @contest.user.name %>
+		</p>
+		<% unless @leader.nil? %>
+		<p>
+			<b>Current Leader</b>
+				<%= link_to @leader.name, competitor_path(@leader.id) %>
+		</p>
+		<% end %>
+		
+		<p>
+			<b>Number of Competitors:</b>
+			<%= @competitors.count %>
+		</p>
+	</div>
+	<div class="span8">
 
-<p>
-  <b>User:</b>
-  <%= @contest.user_id %>
-</p>
+	</div>
+</div>
+
 
 
 <%= link_to 'Edit', edit_contest_path(@contest) %> |

@@ -14,6 +14,8 @@ class ContestsController < ApplicationController
   # GET /contests/1.json
   def show
     @contest = Contest.find(params[:id])
+    @competitors = Competitor.for_contest(params[:id]).by_elo
+    @leader = @competitors.first unless @competitors.empty?
 
     respond_to do |format|
       format.html # show.html.erb
