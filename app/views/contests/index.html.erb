@@ -16,9 +16,9 @@
     <td><%= contest.competitors.size %></td>
     <td><%= contest.user.proper_name %></td>
     <td><%= contest.competitors.by_elo.empty? ? "N/A" : "#{contest.competitors.by_elo.first.name}" %></td>
-    <td><%= link_to raw("<i class='icon-file icon-white></i> Show"), contest, :class => 'btn btn-info' %></td>
+    <td><%= link_to raw("<i class='icon-file icon-white'></i> Show"), contest, :class => 'btn btn-info' %></td>
     <% if can? :edit, contest %>
-      <td><%= link_to raw("<i class='icon-edit></i> Edit"), edit_contest_path(contest), :class => 'btn' %></td>
+      <td><%= link_to raw("<i class='icon-edit'></i> Edit"), edit_contest_path(contest), :class => 'btn' %></td>
     <% else %>
       <td></td>
     <% end %>

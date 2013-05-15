@@ -4,9 +4,25 @@
     <%= f.input :name %>
     <%= f.input :description %>
     <%= f.input :contest_id, :collection => Contest.alphabetical %>
-    <%= f.hidden_field :wins, :value => 0 %>
-    <%= f.hidden_field :times_played, :value => 0 %>
-    <%= f.hidden_field :elo, :value => 1200 %>
+
+    <% if @competitor.wins? %>
+      <%= f.hidden_field :wins, :value => @competitor.wins %>
+    <% else %>
+      <%= f.hidden_field :wins, :value => 0 %>
+    <% end %>
+
+    <% if @competitor.times_played? %>
+      <%= f.hidden_field :times_played, :value => @competitor.times_played %>
+    <% else %>
+      <%= f.hidden_field :times_played, :value => 0 %>
+    <% end %>
+
+    <% if @competitor.elo? %>
+      <%= f.hidden_field :elo, :value => @competitor.elo %>
+    <% else %>
+      <%= f.hidden_field :elo, :value => 1200 %>
+    <% end %>
+
     <%= f.input :photo %>
 
     <div class="form-actions">
