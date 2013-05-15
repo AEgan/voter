@@ -3,6 +3,7 @@
   <fieldset>
     <%= f.input :name %>
     <%= f.input :description %>
+    <%= f.input :contest_id, :collection => Contest.alphabetical %>
     <%= f.hidden_field :wins, :value => 0 %>
     <%= f.hidden_field :times_played, :value => 0 %>
     <%= f.hidden_field :elo, :value => 1200 %>

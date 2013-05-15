@@ -4,7 +4,8 @@
   <div class="form-inputs">
     <%= f.input :name %>
     <%= f.input :description %>
-    <%= f.input :user_id %>
+    <%= f.input :user_id, :collection => User.alphabetical %>
+    <%= f.input :active %>
   </div>
 
   <div class="form-actions">
