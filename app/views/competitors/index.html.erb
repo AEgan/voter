@@ -8,6 +8,7 @@
     <th><%= link_to "Elo", competitors_path %></th>
     <th><%= link_to "Wins", competitors_path(:sort => "wins") %></th>
     <th><%= link_to "Times Played", competitors_path(:sort => "times") %></th>
+    <th></th>
     <% if can? :edit, @competitors %>
       <th></th>
     <% end %>
@@ -20,6 +21,7 @@
     <td><%= competitor.elo.round(2) %></td>
     <td><%= competitor.wins %></td>
     <td><%= competitor.times_played %></td>
+    <td><%= link_to raw("<i class='icon-file icon-white'></i> Details"), competitor_path(competitor), :class => 'btn btn-info'%></td>
     <% if can? :edit, competitor %>
       <td><%= link_to raw("<i class='icon-edit'></i> Edit"), edit_competitor_path(competitor), :class => 'btn' %></td>
     <% end %>
