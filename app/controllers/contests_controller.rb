@@ -2,7 +2,7 @@ class ContestsController < ApplicationController
   # GET /contests
   # GET /contests.json
   def index
-    @contests = Contest.all
+    @contests = Contest.active.all
 
     respond_to do |format|
       format.html # index.html.erb

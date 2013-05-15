@@ -1,27 +1,31 @@
-<h1>Listing contests</h1>
+<h1>Active Contests</h1>
 
-<table>
-  <tr>
+<table class="table table-striped table-hover table-bordered">
+  <thead>
     <th>Name</th>
-    <th>Description</th>
-    <th>User</th>
+    <th>Competitors</th>
+    <th>Creater</th>
+    <th>Leader</th>
     <th></th>
     <th></th>
-    <th></th>
-  </tr>
+  </thead>
 
 <% @contests.each do |contest| %>
   <tr>
-    <td><%= contest.name %></td>
-    <td><%= contest.description %></td>
-    <td><%= contest.user_id %></td>
-    <td><%= link_to 'Show', contest %></td>
-    <td><%= link_to 'Edit', edit_contest_path(contest) %></td>
-    <td><%= link_to 'Destroy', contest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to contest.name, contest_path(contest) %></td>
+    <td><%= contest.competitors.size %></td>
+    <td><%= contest.user.proper_name %></td>
+    <td><%= contest.competitors.by_elo.empty? ? "N/A" : "#{contest.competitors.by_elo.first.name}" %></td>
+    <td><%= link_to raw("<i class='icon-file icon-white></i> Show"), contest, :class => 'btn btn-info' %></td>
+    <% if can? :edit, contest %>
+      <td><%= link_to raw("<i class='icon-edit></i> Edit"), edit_contest_path(contest), :class => 'btn' %></td>
+    <% else %>
+      <td></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Contest', new_contest_path %>
+<%= link_to raw("<i class='icon-plus icon-white'></i> New Contest"), new_contest_path, :class => 'btn btn-primary' %>
