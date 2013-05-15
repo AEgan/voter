@@ -1,6 +1,7 @@
 <div class="nav-collapse">
 	<ul class='nav'>
 		<li><%= link_to 'Vote', home_path %></li>
+		<li><%= link_to 'Contests', contests_path %></li>
 		<li><%= link_to 'Leaderboards', competitors_path %></li>
 		<% if logged_in? %>
 			<% if current_user.admin? %>
