@@ -18,6 +18,7 @@ class Contest < ActiveRecord::Base
   scope :active, where("active = ?", true)
   scope :inactive, where("active = ?", false)
   scope :random, order("RANDOM()").limit(1)
+  scope :search, lambda {|term| where("name like ? or description like ?", "%#{term}%", "%#{term}%")}
 
   private
   #custom validation

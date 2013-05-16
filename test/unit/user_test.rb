@@ -113,6 +113,14 @@ class UserTest < ActiveSupport::TestCase
   		assert records.include?(@paul)
   	end
 
+    # search for users
+    should "have a scope to help with searching" do
+      eResults = User.search("@example.com")
+      pResults = User.search("Paul")
+      assert_equal 5, eResults.size
+      assert_equal [@paul], pResults
+    end
+
   	# no password = no user
   	should "not create a user without a password" do
   		bad = FactoryGirl.build(:user, :email => "notalex@example.com", :password => "", :password_confirmation => "")

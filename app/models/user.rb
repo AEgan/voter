@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   scope :inactive, where("active = ?", false)
   scope :admins, where("role = ?", "admin")
   scope :members, where("role = ?", "member")
+  scope :search, lambda {|term| where("email like ? or first_name like ? or last_name like ?", "%#{term}%", "%#{term}%", "%#{term}%")}
 
   ROLES = [['Administrator', :admin],['Member', :member]]
 

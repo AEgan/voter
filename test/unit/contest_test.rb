@@ -101,6 +101,14 @@ class ContestTest < ActiveSupport::TestCase
   		assert_equal [@contest3], Contest.inactive
   	end 
 
+    # search scope
+    should "have a scope to help for searching" do
+      cResults = Contest.search("C Test Contest")
+      dResults = Contest.search("The best test contest ever")
+      assert_equal [@contest3], cResults
+      assert_equal 3, dResults.size
+    end
+
   	# tests that a contest isn't valid if it belongs to an inactive user
   	should "not allow a contest to be created if it is associated with an inactive user" do
   		badRecord = FactoryGirl.build(:contest, :user => @inactiveUser, :name => "Unique Name")
