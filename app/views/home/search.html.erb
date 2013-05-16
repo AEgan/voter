@@ -1,0 +1,64 @@
+<h2>Search result for term <em>'<%= @query %>'</em> resulted in <%= pluralize(@count, 'hit') %></h2>
+<p class="supertiny">&nbsp;</p>
+
+<% unless @contests.empty? %>
+	<p><em><strong>Contests matching term '<%= @query %>'</strong></em></p>
+	<table class="table table-striped table-hover table-bordered">
+		<tr>
+			<th>Contest Name</th>
+			<th>Number of</th>
+		</tr>
+		<% for contest in @contests do %>
+			<tr>
+			  <td><%= link_to contest.name, contest_path(contest) %></td>
+			  <td><%= Competitor.for_contest(contest.id).count %></td>
+		  </tr>
+		<% end %>
+	</table>
+	<p class="supertiny">&nbsp;</p>
+	<div class="digg_pagination">
+	<%= will_paginate @events, :param_name => 'eventsPage', :container => true, :previous_label => "Previous", :next_label => "Next", :inner_window => 2 %>
+</div>
+<% end %>
+
+<% unless @competitors.empty? %>
+	<p><em><strong>Competitors matching term '<%= @query %>'</strong></em></p>
+	<table class="table table-striped table-bordered table-hover">
+		<thead>
+			<th>Name</th>
+			<th>Contest</th>
+			<th>Elo</th>
+		</thead>
+		<% for competitor in @competitors do %>
+		  <tr>
+				<td><%= link_to competitor.name, competitor_path(competitor) %></td>
+				<td><%= link_to competitor.contest.name, contest_path(competitor.contest) %></td>
+				<td><%= competitor.elo %></td>
+			</tr>
+		<% end %>
+	</table>
+	<div class="digg_pagination">
+	<%= will_paginate @competitors, :param_name => 'competitorsPage', :container => true, :previous_label => "Previous", :next_label => "Next", :inner_window => 2 %>
+</div>
+	<p class="supertiny">&nbsp;</p>
+<% end %>
+
+<% unless @users.empty? || !current_user.is_admin? %>
+	<p><em><strong>Users matching term '<%= @query %>'</strong></em></p>
+	<table class="table table-striped table-bordered table-hover">
+		<thead>
+			<th>Name</th>
+			<th>Email</th>
+		</thead>
+		<% for user in @users do %>
+		<tr>
+			<td><%= link_to user.name, user_path(user.id) %></td>
+			<td><%= user.email %></td>
+		</tr>
+		<% end %>
+	</table>
+	<div class="digg_pagination">
+	<%= will_paginate @users, :param_name => 'usersPage', :container => true, :previous_label => "Previous", :next_label => "Next", :inner_window => 2 %>
+</div>
+	<p class="supertiny">&nbsp;</p>
+<% end %>

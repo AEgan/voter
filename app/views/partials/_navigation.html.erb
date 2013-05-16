@@ -13,5 +13,8 @@
 			<li><%= link_to "Log In", login_path %></li>
 			<li><%= link_to "Sign Up", new_user_path %></li>
 		<% end %>
+		<li class='searchnav'><%= form_tag(search_path, :html => "class='navbar-search pull-right") do %>
+        <%= text_field_tag('query', '', :size => 10, :placeholder => "Search") %>
+      <% end %></li>
 	</ul>
 </div>

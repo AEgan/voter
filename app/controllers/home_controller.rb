@@ -11,8 +11,13 @@ class HomeController < ApplicationController
 
 	def search
 		@query = params[:query]
-		@results = Competitor.search(@query)
-		@count = @results.count
+		@competitors = Competitor.search(@query).paginate(:page => params[:competitorsPage]).per_page(10)
+		@contests = Contest.search(@query).paginate(:page => params[:contestsPage]).per_page(10)
+		if(current_user && current_user.admin?)
+			@users = User.search(@query).paginate(:page => params[:usersPage]).per_page(10)
+			@count = @contests.count + @competitors.count + @users.count
+		end
+		@count = @contests.count + @competitors.count 
 	end
 
 	def vote
