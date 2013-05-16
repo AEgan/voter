@@ -43,7 +43,7 @@
 	<p class="supertiny">&nbsp;</p>
 <% end %>
 
-<% unless @users.empty? || !current_user.is_admin? %>
+<% unless @users.empty? || !current_user.admin? %>
 	<p><em><strong>Users matching term '<%= @query %>'</strong></em></p>
 	<table class="table table-striped table-bordered table-hover">
 		<thead>
