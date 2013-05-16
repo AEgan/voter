@@ -67,6 +67,11 @@ class ContestTest < ActiveSupport::TestCase
   		deny repeatC.valid?
   	end
 
+    # tests that there is a scope to return only one random contest
+    should "have a scope to return a random contest" do
+      assert_equal Contest.random.size, 1
+    end
+
   	# tests the for_user scope
   	should "have a scope to return all records that are associated with a passed in user" do
   		recordsA = Contest.for_user(@userA.id)

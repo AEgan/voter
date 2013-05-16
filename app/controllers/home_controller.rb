@@ -1,8 +1,9 @@
 class HomeController < ApplicationController
 	
 	def index
-		if Competitor.all.count >= 2
-			records = Competitor.random
+		@contest = Contest.random.first
+		if Competitor.for_contest(@contest.id).count >= 2
+			records = Competitor.for_contest(@contest.id).random
 			@competitor1 = records[0]
 			@competitor2 = records[1]
 		end

@@ -17,6 +17,7 @@ class Contest < ActiveRecord::Base
   scope :alphabetical, order("name")
   scope :active, where("active = ?", true)
   scope :inactive, where("active = ?", false)
+  scope :random, order("RANDOM()").limit(1)
 
   private
   #custom validation
