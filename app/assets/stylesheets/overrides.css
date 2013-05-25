@@ -60,6 +60,11 @@ li.searchnav {
 .icon-trash {
   background-image: url("./img/glyphicons-halflings.png");
 }
+
+.icon-file {
+  background-image: url("./img/glyphicons-halflings.png");
+}
+
 .icon-search {
   background-image: url("./img/glyphicons-halflings.png");
 }

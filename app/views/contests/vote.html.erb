@@ -1,12 +1,32 @@
 <p id="notice"><%= notice %></p>
-
+<div class="row">
+<div class="span12">
 <h2>Voting for <%= @contest.name %></h2>
 <p><%= @contest.description %></p>
-
-<b><%= @competitors[0].name %></b>
+</div>
+</div>
+<div class="row">
+<div class="span6">
+<b><%= link_to @competitors[0].name, competitor_path(@competitors[0]) %></b> <br />
 <%= image_tag @competitors[0].photo_url%>
 <p><%= @competitors[0].description%></p>
-
-<b><%= @competitors[1].name %></b>
+</div>
+<div class="span6">
+<b><%= link_to @competitors[1].name, competitor_path(@competitors[1]) %></b> <br />
 <%= image_tag @competitors[1].photo_url%>
 <p><%= @competitors[1].description%></p>
+</div>
+</div>
+<div class="row">
+	<div class="span6">
+		<%= link_to raw("<i class='icon-ok icon-white'></i> Vote #{@competitors[0].name}"), home_path, :class => 'btn btn-success' %>
+	</div>
+	<div class="span6">
+		<%= link_to raw("<i class='icon-ok icon-white'></i> Vote #{@competitors[1].name}"), home_path, :class => 'btn btn-success' %>
+	</div>
+</div>
+<br />
+<div class="row">
+	<%= link_to raw("<i class='icon-th-list icon-white'></i> List All Contests"), contests_path, :class => 'btn btn-primary' %>
+	<%= link_to raw("<i class='icon-file'></i> Details"), contest_path(@contest), :class => 'btn'%>
+</div>
