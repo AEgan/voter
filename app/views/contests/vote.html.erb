@@ -19,10 +19,10 @@
 </div>
 <div class="row">
 	<div class="span6">
-		<%= link_to raw("<i class='icon-ok icon-white'></i> Vote #{@competitors[0].name}"), home_path, :class => 'btn btn-success' %>
+		<%= link_to raw("<i class='icon-ok icon-white'></i> Vote #{@competitors[0].name}"), submit_path(:winner_id => @competitors[0].id, :loser_id => @competitors[1].id), :class => 'btn btn-success' %>
 	</div>
 	<div class="span6">
-		<%= link_to raw("<i class='icon-ok icon-white'></i> Vote #{@competitors[1].name}"), home_path, :class => 'btn btn-success' %>
+		<%= link_to raw("<i class='icon-ok icon-white'></i> Vote #{@competitors[1].name}"), submit_path(:winner_id => @competitors[1].id, :loser_id => @competitors[0].id), :class => 'btn btn-success' %>
 	</div>
 </div>
 <br />

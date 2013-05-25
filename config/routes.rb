@@ -7,6 +7,8 @@ Voter::Application.routes.draw do
   resources :sessions
 
   match 'contests/:id/vote' => 'contests#vote', :as => :contest_vote
+  match 'submit' => 'contests#submit', :as => :submit
+
   match 'logout' => 'sessions#destroy', :as => :logout
   match 'login' => 'sessions#new', :as => :login
 

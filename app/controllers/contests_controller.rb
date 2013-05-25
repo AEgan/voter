@@ -88,4 +88,12 @@ class ContestsController < ApplicationController
     @contest = Contest.find(params[:id])
     @competitors = Competitor.for_contest(@contest.id).random
   end
+
+  def submit
+    winner = Competitor.find(params[:winner_id]) unless params[:winner_id].nil?
+    loser = Competitor.find(params[:loser_id]) unless params[:loser_id].nil?
+    # new version of update_elo method is called on the winner, passing in loser
+    winner.update_elo(loser)
+    redirect_to request.referer
+  end
 end
