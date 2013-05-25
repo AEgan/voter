@@ -38,3 +38,4 @@
 	<%= link_to raw("<i class='icon-edit'></i> Edit"), edit_contest_path(@contest), :class => 'btn'%>
 <% end %>
 <%= link_to raw("<i class='icon-th-list icon-white'></i> List All Contests"), contests_path, :class => 'btn btn-primary' %>
+<%= link_to raw("<i class='icon-ok icon-white'></i> Vote!"), contest_vote_path(@contest.id), :class => 'btn btn-inverse' %>
