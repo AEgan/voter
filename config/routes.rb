@@ -6,12 +6,14 @@ Voter::Application.routes.draw do
   resources :competitors
   resources :sessions
 
+  match 'contests/:id/vote' => 'contests#vote', :as => :contest_vote
   match 'logout' => 'sessions#destroy', :as => :logout
   match 'login' => 'sessions#new', :as => :login
 
   match 'home' => 'home#index', :as => :home
   match 'search' => 'home#search', :as => :search
   match 'vote' => 'home#vote', :as => :vote
+
   root :to => 'home#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.

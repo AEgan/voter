@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Voting for <%= @contest.name %></h2>
+<p><%= @contest.description %></p>
+
+<b><%= @competitors[0].name %></b>
+<%= image_tag @competitors[0].photo_url%>
+<p><%= @competitors[0].description%></p>
+
+<b><%= @competitors[1].name %></b>
+<%= image_tag @competitors[1].photo_url%>
+<p><%= @competitors[1].description%></p>

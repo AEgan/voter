@@ -82,4 +82,10 @@ class ContestsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # for voting for a contest
+  def vote
+    @contest = Contest.find(params[:id])
+    @competitors = Competitor.for_contest(@contest.id).random
+  end
 end
